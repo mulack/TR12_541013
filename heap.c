@@ -3,29 +3,29 @@
 #include "../lib/heap.h"
 
 HEAP* HEAP_create(int n, COMP* compara){//Cria um heap vazio de tamanho n e com funcao de comparacao compara
-    HEAP* heap = malloc(sizeof(HEAP));
-    heap->comparador = compara;
-    heap->N = n;
-    heap->P = 0;
-    heap->elems = malloc(n * sizeof(void *));
+    HEAP* novo = malloc(sizeof(HEAP));
+    novo->comparador = compara;
+    novo->N = n;
+    novo->P = 0;
+    novo->elems = malloc(n * sizeof(void *));
     for(int i = 0;i<n;i++){
-        heap->elems[i] = NULL;
+        novo->elems[i] = NULL;
     }
-    return heap;
+    return novo;
 }
 
-void HEAP_add(HEAP* vetor, void* newelem){
-/*Adiciona o elemento newelem ao Heap, na posicao correta se for possível
+void HEAP_add(HEAP* vetor, void* novo_elems){
+/*Adiciona o elemento novo_elems ao Heap, na posicao correta se for possível
 ainda incluir o elemento (se existe espaco no vetor elems). Observe que 
 a estrutura deve respeitar a regra da heap, ou seja, para todo i temos que 
 x[i] é menor que ou equivalente a x[2*i] e a x[2*i+1].*/
     if(vetor->P < vetor->N){
         if(vetor->P == 0){
-            vetor->elems[0] = newelem;
+            vetor->elems[0] = novo_elems;
             vetor->P++;
         }
         else{
-            vetor->elems[vetor->P] = newelem;
+            vetor->elems[vetor->P] = novo_elems;
             vetor->P++;
             for(int i=vetor->P-1;i>0;i--){
                 if(vetor->comparador(vetor->elems[i], vetor->elems[i/2]) == 1){

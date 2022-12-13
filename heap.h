@@ -18,7 +18,7 @@ typedef struct heap{
 
 HEAP* HEAP_create(int n, COMP* compara);
 
-void HEAP_add(HEAP* heap, void* newelem);
+void HEAP_add(HEAP* heap, void* novo_elems);
 
 void* HEAP_remove(HEAP* heap);
 
